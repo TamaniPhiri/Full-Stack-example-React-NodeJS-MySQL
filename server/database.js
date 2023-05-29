@@ -7,12 +7,12 @@ const pool=mysql.createPool({
     database:'fullstack',
 }).promise()
 
-    export async function getRows(){
+    export async function getUsers(){
     const [users] = await pool.query('SELECT * FROM demo');
     return users
     }
 
-    export async function getRow(id){
+    export async function getUser(id){
         const [userId] = await pool.query('SELECT * FROM demo where id = ?',[id]);
         return userId[0]
     }
