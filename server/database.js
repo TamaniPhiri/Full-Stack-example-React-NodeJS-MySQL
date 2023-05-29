@@ -10,7 +10,14 @@ const pool=mysql.createPool({
     async function getRows(){
     const [rows] = await pool.query('SELECT * FROM demo');
     return rows
-}
+    }
+
+    async function getRow(id){
+        const [row] = await pool.query('SELECT * FROM demo where id = ?',[id]);
+        return row[0]
+    }
 
 const notes =await getRows();
 console.log(notes);
+const note= await getRow(3);
+console.log(note);
