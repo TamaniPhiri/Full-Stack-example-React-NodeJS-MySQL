@@ -12,6 +12,12 @@ app.get('/users', async(req, res) => {
     res.send(users);
 })
 
+app.get('/users/:id', async(req, res) => {
+    const id=req.params.id;
+    const user=await getUser(id);
+    res.send(user);
+})
+
 app.listen(8080,() => {
     console.log("Server listening on port http://localhost:8080");
 });
