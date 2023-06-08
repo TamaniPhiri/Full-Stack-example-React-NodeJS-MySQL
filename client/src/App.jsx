@@ -1,19 +1,27 @@
 import './App.css'
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 
 function App() {
- 
+
+  const [data,setData]=useState([]);
+
   useEffect(()=>{
     (async()=>{
-      const users = await axios.get('http://localhost:8080/users')
-      console.log(users);
+      const users=await axios.get('http://localhost:8080/users');
+      setData(users.data);
     })()
-  },[])
+  },[]);
 
   return (
     <>
-      <div>full stack example</div>  
+      <div>
+        {data.map((results)=>(
+          <div key={results.id}>
+            <h1>{results.name}</h1>
+          </div>
+        ))}
+      </div>
     </>
   )
 }
